@@ -1,7 +1,12 @@
 FROM mohamnag/aws-cli
 MAINTAINER Luca Mattivi <luca@smartdomotik.com>
 
-# change these to fit your need
+
+RUN apt-get update \
+    && apt-get install -yq --no-install-recommends mysql-client \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /tmp/*
 
 # m h  dom mon dow
 ENV BACKUP_CRON_SCHEDULE="0 * * * *"
