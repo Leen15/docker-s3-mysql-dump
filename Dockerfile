@@ -6,10 +6,6 @@ MAINTAINER Luca Mattivi <luca@smartdomotik.com>
 # m h  dom mon dow
 ENV BACKUP_CRON_SCHEDULE="0 * * * *"
 
-ENV BACKUP_TGT_DIR=/backup/
-ENV BACKUP_SRC_DIR=/data/
-ENV BACKUP_FILE_NAME='host_volumes'
-
 # bucket/path/to/place/
 ENV BACKUP_S3_BUCKET=
 ENV AWS_DEFAULT_REGION=
@@ -24,7 +20,6 @@ ENV MYSQL_HOST=**None** \
 
 ADD crontab /etc/cron.d/backup-cron
 ADD backup.sh /opt/backup.sh
-ADD restore.sh /opt/restore.sh
 ADD cron.sh /opt/cron.sh
 
 RUN chmod 0644 /etc/cron.d/backup-cron
@@ -32,8 +27,6 @@ RUN chmod 0644 /etc/cron.d/backup-cron
 RUN touch /var/log/cron.log
 RUN chmod +x /opt/*.sh
 
-VOLUME $BACKUP_TGT_DIR
-VOLUME $BACKUP_SRC_DIR
 
 WORKDIR /opt/
 
