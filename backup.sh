@@ -12,7 +12,7 @@ MYSQL_CONN="--user=$MYSQL_USER --host=$MYSQL_HOST --port=$MYSQL_PORT --password=
 if [ -n "$2" ]; then
     databases=$2
 else
-	echo "Finding databases..."
+	echo "Finding databases on host $MYSQL_HOST..."
     databases=`mysql ${MYSQL_CONN} -N -e "SHOW DATABASES;" | grep -Ev "(information_schema|performance_schema)"`
 fi
 
