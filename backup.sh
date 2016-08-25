@@ -18,7 +18,7 @@ fi
 
 for db in $databases; do
     echo "Dumping: $db..."
-    if [ -n "$DUMP_TIMESTAMP" ]; then
+    if [ -n "$BACKUP_TIMESTAMP" ]; then
     	timestamp=`date +%Y-%m-%d.%H%M%S`
     	filename="${db}_${timestamp}"
     else
