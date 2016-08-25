@@ -7,11 +7,7 @@ echo "backup started at $(date +%Y-%m-%d_%H:%M:%S)"
 mkdir -p $MYSQL_BACKUP_DIR
 
 
-if [ -n $MYSQL_PASSWORD ]; then
-    PASS_OPT="--password=${MYSQL_PASSWORD}"
-fi
-
-MYSQL_CONN="--user=$MYSQL_USER --host=$MYSQL_HOST --port=$MYSQL_PORT"
+MYSQL_CONN="--user=$MYSQL_USER --host=$MYSQL_HOST --port=$MYSQL_PORT --password=${MYSQL_PASSWORD}"
 
 if [ -n "$2" ]; then
     databases=$2
