@@ -3,22 +3,6 @@
 
 set -e
 
-EXCLUDE_OPT=
-PASS_OPT=
-
-for i in "$@"; do
-    case $i in
-        --exclude=*)
-        EXCLUDE_OPT="${i#*=}"
-        shift
-        ;;
-        *)
-            # unknown option
-        ;;
-    esac
-done
-
-
 echo "backup started at $(date +%Y-%m-%d_%H:%M:%S)"
 mkdir -p $MYSQL_BACKUP_DIR
 
@@ -27,17 +11,13 @@ if [ -n $MYSQL_PASSWORD ]; then
     PASS_OPT="--password=${MYSQL_PASSWORD}"
 fi
 
-MYSQL_CONN="--user=$MYSQL_USER --host=$MYSQL_HOST --port=$MYSQL_PORT ${PASS_OPT}"
-
-if [ -n $EXCLUDE_OPT ]; then
-    EXCLUDE_OPT="| grep -Ev (${EXCLUDE_OPT//,/|})"
-fi
+MYSQL_CONN="--user=$MYSQL_USER --host=$MYSQL_HOST --port=$MYSQL_PORT"
 
 if [ -n "$2" ]; then
     databases=$2
 else
 	echo "Finding databases..."
-    databases=`mysql ${MYSQL_CONN} -N -e "SHOW DATABASES;" | grep -Ev "(information_schema|performance_schema)${EXCLUDE_OPT}"`
+    databases=`mysql ${MYSQL_CONN} -N -e "SHOW DATABASES;" | grep -Ev "(information_schema|performance_schema)"`
 fi
 
 for db in $databases; do

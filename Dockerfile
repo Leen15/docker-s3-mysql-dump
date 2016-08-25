@@ -1,4 +1,4 @@
-FROM leen15/aws-cli
+FROM mohamnag/aws-cli
 MAINTAINER Luca Mattivi <luca@smartdomotik.com>
 
 # change these to fit your need
