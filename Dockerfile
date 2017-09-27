@@ -3,7 +3,7 @@ MAINTAINER Luca Mattivi <luca@smartdomotik.com>
 
 
 RUN apt-get update \
-    && apt-get install -yq --no-install-recommends mysql-client \
+    && apt-get install -yq --no-install-recommends mysql-client cron \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/*
