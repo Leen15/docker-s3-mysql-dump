@@ -3,13 +3,14 @@ MAINTAINER Luca Mattivi <luca@smartdomotik.com>
 
 
 RUN apt-get update \
-    && apt-get install -yq --no-install-recommends mysql-client \
+    && apt-get install -yq --no-install-recommends mysql-client cron \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/*
 
 # m h  dom mon dow
 ENV BACKUP_CRON_SCHEDULE="0 * * * *"
+ENV BACKUP_PRIORITY="ionice -c 3 nice -n 10"
 
 # bucket/path/to/place/
 ENV BACKUP_S3_BUCKET=

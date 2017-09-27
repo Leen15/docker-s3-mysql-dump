@@ -1,8 +1,8 @@
 # Mysql dump to S3
 A docker image for backup all mysql databases and upload them to a S3 Bucket.
 
-Image runs as a cron job by default every hour. Period may be changed by tuning `BACKUP_CRON_SCHEDULE` environment variable.
-
+Image runs as a cron job by default every hour. Period may be changed by tuning `BACKUP_CRON_SCHEDULE` environment variable.   
+It also have a `BACKUP_PRIORITY` param for set the backup priority with ionice and nice values.   
 May also be run as a one time backup job by using `backup.sh` script as command.
  
 
@@ -12,7 +12,7 @@ MYSQL_HOST=mysql
 MYSQL_PASSWORD=password
 ```
 
-Following environemnt variables should be set for backup to work:
+Following environment variables should be set for backup to work:
 ```
 BACKUP_S3_BUCKET=		// no trailing slash at the end!
 AWS_DEFAULT_REGION=
@@ -24,6 +24,7 @@ Flowing environment variables can be set to change the functionality:
 ```
 BACKUP_CRON_SCHEDULE=* * * * *
 MYSQL_BACKUP_DIR=/var/backup/mysql
+BACKUP_PRIORITY=<this is the priority, standard value is "ionice -c 3 nice -n 10">
 ```
 
 
