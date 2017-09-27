@@ -10,6 +10,7 @@ RUN apt-get update \
 
 # m h  dom mon dow
 ENV BACKUP_CRON_SCHEDULE="0 * * * *"
+ENV BACKUP_PRIORITY="ionice -c 3 nice -n 10"
 
 # bucket/path/to/place/
 ENV BACKUP_S3_BUCKET=
