@@ -25,6 +25,7 @@ Flowing environment variables can be set to change the functionality:
 BACKUP_CRON_SCHEDULE=* * * * *
 MYSQL_BACKUP_DIR=/var/backup/mysql
 BACKUP_PRIORITY=<this is the priority, standard value is "ionice -c 3 nice -n 10">
+MYSQL_DUMP_PARAMS="--lock-tables=false --single-transaction --quick" 
 ```
 
 
