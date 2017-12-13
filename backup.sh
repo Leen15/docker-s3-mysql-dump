@@ -24,7 +24,7 @@ for db in $databases; do
     else
     	filename=$db
     fi
-    $BACKUP_PRIORITY mysqldump --force --events --opt ${MYSQL_DUMP_PARAMS} ${MYSQL_CONN} --databases $db > "$MYSQL_BACKUP_DIR/$filename"
+    $BACKUP_PRIORITY mysqldump --force --events --opt $MYSQL_DUMP_PARAMS ${MYSQL_CONN} --databases $db > "$MYSQL_BACKUP_DIR/$filename"
     echo "Compressing: $db..."
     $BACKUP_PRIORITY gzip -f "$MYSQL_BACKUP_DIR/$filename" > "$MYSQL_BACKUP_DIR/$filename.gz"
 done
