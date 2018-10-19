@@ -13,7 +13,7 @@ if [ -n "$2" ]; then
     databases=$2
 else
 	echo "Finding databases on host $MYSQL_HOST..."
-    databases=`mysql ${MYSQL_CONN} -N -e "SHOW DATABASES;" | grep -Ev "(information_schema|performance_schema)"`
+    databases=`mysql ${MYSQL_CONN} -N -e "SHOW DATABASES;" | grep -Ev "(information_schema|performance_schema${MYSQL_EXCLUDE_DBS})"`
 fi
 
 for db in $databases; do
